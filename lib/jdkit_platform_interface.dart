@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'jdkit_method_channel.dart';
@@ -9,6 +10,12 @@ abstract class JdkitPlatform extends PlatformInterface {
   static final Object _token = Object();
 
   static JdkitPlatform _instance = MethodChannelJdkit();
+
+  static const EventChannel _eventChannel = EventChannel('jdkit_events');
+
+  static Stream<Map<dynamic, dynamic>> get onCallback {
+    return _eventChannel.receiveBroadcastStream().map((event) => event as Map<dynamic, dynamic>);
+  }
 
   /// The default instance of [JdkitPlatform] to use.
   ///
@@ -31,11 +38,11 @@ abstract class JdkitPlatform extends PlatformInterface {
     throw UnimplementedError('init() has not been implemented.');
   }
 
-  Future<Map?> openJDUrl(url, {Map? userInfo}) async {
+  Stream<Map<dynamic, dynamic>> openJDUrl(url, {Map? userInfo}) {
     throw UnimplementedError('openJDUrl() has not been implemented.');
   }
 
-  Future<Map?> openJXUrl(url, {Map? userInfo}) async {
+  Stream<Map<dynamic, dynamic>> openJXUrl(url, {Map? userInfo}) {
     throw UnimplementedError('openJXUrl() has not been implemented.');
   }
 }

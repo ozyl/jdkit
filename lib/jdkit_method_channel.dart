@@ -24,16 +24,16 @@ class MethodChannelJdkit extends JdkitPlatform {
   }
 
   @override
-  Future<Map?> openJDUrl(url, {Map? userInfo}) async {
-    final result = await methodChannel.invokeMethod<Map>('openJDUrl',
+  Stream<Map<dynamic, dynamic>> openJDUrl(url, {Map? userInfo}) {
+    methodChannel.invokeMethod<Map>('openJDUrl',
         userInfo == null ? {"url": url} : {"url": url, "userInfo": userInfo});
-    return result;
+    return JdkitPlatform.onCallback;
   }
 
   @override
-  Future<Map?> openJXUrl(url, {Map? userInfo}) async {
-    final result = await methodChannel.invokeMethod<Map>('openJXUrl',
+  Stream<Map<dynamic, dynamic>> openJXUrl(url, {Map? userInfo}) {
+    methodChannel.invokeMethod<Map>('openJXUrl',
         userInfo == null ? {"url": url} : {"url": url, "userInfo": userInfo});
-    return result;
+    return JdkitPlatform.onCallback;
   }
 }

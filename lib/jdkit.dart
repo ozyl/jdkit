@@ -9,11 +9,11 @@ class Jdkit {
     return JdkitPlatform.instance.init(appKey, appSecretKey);
   }
 
-  Future<Map?> openJDUrl(url, {Map? userInfo}) {
+  Stream<Map<dynamic, dynamic>>  openJDUrl(url, {Map? userInfo}) {
     return JdkitPlatform.instance.openJDUrl(url, userInfo:userInfo);
   }
 
-  Future<Map?> openJXUrl(url, {Map? userInfo}) {
+  Stream<Map<dynamic, dynamic>>  openJXUrl(url, {Map? userInfo}) {
     return JdkitPlatform.instance.openJXUrl(url, userInfo: userInfo);
   }
 }
