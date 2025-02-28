@@ -17,6 +17,7 @@ jdkit flutter for android and ios.
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '11.0'
+  s.static_framework = true
 
   s.vendored_frameworks = "framework/*.framework"
   s.resources = ['bundle/*.bundle']
