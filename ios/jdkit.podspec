@@ -19,7 +19,7 @@ jdkit flutter for android and ios.
   s.platform = :ios, '11.0'
   s.static_framework = true
 
-  s.vendored_frameworks = "framework/*.framework"
+  s.vendored_frameworks = "framework/*.xcframework"
   s.resources = ['bundle/*.bundle']
   # 添加编译参数:'-ObjC','-lstdc++'
   s.frameworks = 'JavaScriptCore','SystemConfiguration','UIKit','Foundation'

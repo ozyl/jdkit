@@ -4,7 +4,6 @@
 //  提供Kepler服务
 //  Created by JD.K on 16/6/20.
 //  Copyright © 2016年 JD.K. All rights reserved.
-//  version 3.0.3
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -28,12 +27,17 @@ typedef void(^OpenFailedBlock)(NSInteger code, NSString * _Nonnull url);
 typedef enum {
     KeplerErrorCodeUnInstalled = 422, //未安装京东app
     KeplerErrorCodeWhited, //本地url不在白名单中
-    KeplerErrorCodeResponsed, //本地呼起open协议失败
+    KeplerErrorCodeResponsed, //网络返回数据错误或code不为0
     KeplerErrorCodeNoSid, //sid为空
     KeplerErrorCodeInValidApp, //应用不合法
     KeplerErrorCodeUnInstalledJXAPP, //未安装京喜app
-    KeplerErrorCodeOpenJXFailed //无法打开京喜商品，返回h5链接
-    
+    KeplerErrorCodeNoNeedOpenJXFailed, //无法打开京喜商品，返回h5链接
+    KeplerErrorCodeOpenJDFaild, //呼起京东失败
+    KeplerErrorCodeOpenJXFaild, //呼起京喜失败
+    KeplerErrorCodeUnInstalledJXLiteAPP, //未安装京喜特价app
+    KeplerErrorCodeNoNeedOpenJXLiteFailed, //无法打开京喜特价商品，返回h5链接
+    KeplerErrorCodeOpenJXLiteFaild, //呼起京喜特价失败
+
 } KeplerErrorCode;
 
 typedef enum {
@@ -139,6 +143,18 @@ FOUNDATION_EXTERN const NSString *kJDKeplerReturnUrl_appBundle;
                   success:(OpenSuccessBlock)successBlock
                   failure:(OpenFailedBlock)failureBlock;
 
+/**
+ 根据url跳转京喜特价App，根据接口返回结果兼容京东App商品跳转
+ @param url  商品链接
+ @param userInfo 自定义参数
+ @param successBlock 呼起App成功的回调
+ @param failureBlock 呼起失败回调。打开原生App失败会以code+url方式返回，可用webview打开url
+ @discussion 返回键信息通过userInfo参数传入，需通过外部变量kJDKeplerReturnUrl_appName，kJDKeplerReturnUrl_appSchema，kJDKeplerReturnUrl_appBundle设置key值，对应value分别为接入应用的应用名，schema，Bundle Identifier。
+ */
+- (void)openJXLitePageWithUrl:(NSString *)url
+                     userInfo:(NSDictionary *)userInfo
+                      success:(OpenSuccessBlock)successBlock
+                      failure:(OpenFailedBlock)failureBlock;
 @end
 
 NS_ASSUME_NONNULL_END

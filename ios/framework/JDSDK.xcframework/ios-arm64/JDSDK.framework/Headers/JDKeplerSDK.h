@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import<JDSDK/KeplerApiManager.h>
 
 //! Project version number for JDKeplerSDK.
 FOUNDATION_EXPORT double JDKeplerSDKVersionNumber;
@@ -14,7 +15,4 @@ FOUNDATION_EXPORT double JDKeplerSDKVersionNumber;
 //! Project version string for JDKeplerSDK.
 FOUNDATION_EXPORT const unsigned char JDKeplerSDKVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <JDKeplerSDK/PublicHeader.h>
-#import<JDSDK/KeplerApiManager.h>         //打包SDK用这个
-//#import <JDKeplerSDK/KeplerApiManager.h>    //依赖demo工程用这个
 
